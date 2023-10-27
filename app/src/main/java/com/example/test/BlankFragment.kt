@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.google.android.material.button.MaterialButton
+import com.example.test.MyThread
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -31,7 +32,7 @@ class BlankFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    private val viewModelTh: DataModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -54,7 +55,7 @@ class BlankFragment : Fragment() {
             val valTxt:EditText = rootView.findViewById<EditText?>(R.id.valField)
             val valTxt1:EditText = rootView.findViewById<EditText?>(R.id.edValfield)
             val ele = valTxt.text.toString().toFloat() + valTxt1.text.toString().toFloat()
-            Thread.sleep(3_000)  // wait for 1 second
+              // wait for 1 second
             viewModel.selectItem(ele.toInt())
             valTxt1.setText(ele.toString())
         }
@@ -62,7 +63,7 @@ class BlankFragment : Fragment() {
             val valTxt:EditText = rootView.findViewById<EditText?>(R.id.valField)
             val valTxt1:EditText = rootView.findViewById<EditText?>(R.id.edValfield)
             val ell = valTxt1.text.toString().toFloat() - valTxt.text.toString().toFloat()
-            Thread.sleep(3_000)
+            viewModelTh.myThread.Sleep()
             viewModel.selectItem(ell.toInt())
             valTxt1.setText(ell.toString())
         }
